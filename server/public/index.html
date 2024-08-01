@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Main user GUI</title>
+</head>
+<body>
+    <h1>EatSmart</h1>
+
+    <!-- user info form -->
+    <form action="">
+        <input type="text" placeholder="age">
+        <input type="text" placeholder="weight">
+        <input type="text" placeholder="height">
+        <button type="submit" onsubmit="postUserStats()">Submit</button>
+    </form>
+
+    <!-- Type of diet -->
+    <form action="">
+        <option value="">
+            <select name="Vegeterian" id="vtn"></select>
+            <select name="Vegan" id="vgn"></select>
+        </option>
+        <button type="submit" onsubmit="postDietType()">Submit</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
