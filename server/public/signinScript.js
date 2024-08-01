@@ -1,20 +1,8 @@
 // const  users = require('../users.json')
 
 const createUser = async(event) => {
+    
     event.preventDefault();
-    // const myUser = {
-    //     ...req.body,
-    //     id: users.length + 1,
-    //     name: req.body.name,
-    //    email: req.body.email,
-    //    password: req.body.password
-    // }
-
-    // users.push(myUser)
-    // writeFileFunc(users)
-    // res.sendStatus(201)
-
-
 
     try {
         const res = await fetch("http://localhost:5000/api",{

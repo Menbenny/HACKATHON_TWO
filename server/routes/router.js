@@ -9,12 +9,12 @@ const router = express.Router()
 // router.post("/", postUserStats)
 
 
-// ? Controllers function - (req, res)
+// ? How to identify Controllers function - (req, res)
 router.post("/", (req, res)=>{
     console.log(req.body);
     
     //! call models
-    res.json({name:"binyamin"})
+    res.json({name:"random"})
 })
 
 module.exports = router
