@@ -1,20 +1,20 @@
 const express = require('express')
 const router = express.Router()
 
-// const {fetchRecipes} = require('../controllers/recipes.js')
+const {fetchRecipes} = require('../controllers/recipesControllers.js')
 
 
-// router.get("/", fetchRecipes)
+router.get("/", fetchRecipes)
 // router.post("/signin", postData)
 // router.post("/", postUserStats)
 
 
 // ? How to identify Controllers function - (req, res)
-router.post("/", (req, res)=>{
-    console.log(req.body);
+// router.post("/", (req, res)=>{
+//     console.log(req.body);
     
-    //! call models
-    res.json({name:"random"})
-})
+//     //! call models
+//     res.json({name:"random"})
+// })
 
 module.exports = router

@@ -1,5 +1,3 @@
-// const  users = require('../users.json')
-
 const createUser = async(event) => {
     
     event.preventDefault();

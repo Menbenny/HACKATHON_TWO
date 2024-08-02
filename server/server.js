@@ -9,7 +9,7 @@ const app = express()
 // const config = require(__dirname + '../recipes.json')
 
 // ! define static - for public 
-app.use('/', express.static(__dirname + '/public'))
+// app.use('/', express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
@@ -19,4 +19,4 @@ app.listen(serverPort, ()=> {
     console.log(chalk.cyanBright(`Running on ${serverPort}`));
 });
 
-app.use('/api', router)
+app.use('/', router)

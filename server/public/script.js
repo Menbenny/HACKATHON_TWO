@@ -1,6 +1,3 @@
-const userStats = require('../userStats.json')
-const userDietType = require('../userDietType.json')
-
 // postUserStats
 // age
 // weight

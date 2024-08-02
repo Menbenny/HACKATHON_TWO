@@ -10,20 +10,20 @@
     <h1>EatSmart</h1>
 
     <!-- user info form -->
-    <form action="">
+    <form  onsubmit="postUserStats()">
         <input type="text" placeholder="age">
         <input type="text" placeholder="weight">
         <input type="text" placeholder="height">
-        <button type="submit" onsubmit="postUserStats()">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
     <!-- Type of diet -->
-    <form action="">
+    <form onsubmit="postDietType()">
         <option value="">
             <select name="Vegeterian" id="vtn"></select>
             <select name="Vegan" id="vgn"></select>
         </option>
-        <button type="submit" onsubmit="postDietType()">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
     <script src="script.js"></script>
