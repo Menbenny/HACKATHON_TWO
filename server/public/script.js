@@ -40,18 +40,32 @@ const postUserStats = async(event) => {
      * ? Possible to adjust based on user activity level  
      */
 
-    const calculateCalory = (event) => {
-        event.preventDefault();
+    // const calculateCalory = (event) => {
+    //     event.preventDefault();
 
-        // ! calory properly estimated according to activity
-        // ! ask user activity in forms
-        // ! Create swtich cases for every scenario
-        // Sedentary - light - moderate - active - very active
-        // ? Provide hints for allocation of level of activity 
+    //     // ! calory properly estimated according to activity
+    //     // ! ask user activity in forms
+    //     // ! Create swtich cases for every scenario
+    //     // Sedentary - light - moderate - active - very active
+    //     // ? Provide hints for allocation of level of activity 
+        
+    //     const bmr = 10 * weight + 6.25 * height - 5 * age + 5
+
+    //     return console.log(`Average Daily Calory intake: ${Math.floor(bmr)} cal`);
+    // }
+
+    const caloryCalculatorButton = document.getElementById('caloryCalculator')
+
+    caloryCalculatorButton.addEventListener("click", (event) => {
+        event.preventDefault()
         
         const bmr = 10 * weight + 6.25 * height - 5 * age + 5
-    }
-    
+
+        const BMR_results = `Your average daily calory intake regardless of activity: ${Math.floor(bmr)} cal`
+
+        return document.getElementById("calorie-result").innerText = BMR_results;
+    })
+    // calculateCalory()
 }
 
 const postDietType = async(event) => {
