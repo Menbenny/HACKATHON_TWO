@@ -3,29 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Main user GUI</title>
+    <title>Sign In</title>
 </head>
 <body>
-    <h1>EatSmart</h1>
-
-    <!-- user info form -->
-    <form  onsubmit="postUserStats()">
-        <input type="text" placeholder="age">
-        <input type="text" placeholder="weight">
-        <input type="text" placeholder="height">
-        <button type="submit">Submit</button>
+    <form onsubmit="createUser(event)">
+        <input name="text" type="text" placeholder="name">
+        <input name="email" type="email" placeholder="email">
+        <input name="password" type="password" placeholder="password">
+        <button type="submit">sign in </button>
     </form>
 
-    <!-- Type of diet -->
-    <form onsubmit="postDietType()">
-        <option value="">
-            <select name="Vegeterian" id="vtn"></select>
-            <select name="Vegan" id="vgn"></select>
-        </option>
-        <button type="submit">Submit</button>
-    </form>
 
-    <script src="script.js"></script>
+    <script src="signinScript.js"></script>
 </body>
 </html>

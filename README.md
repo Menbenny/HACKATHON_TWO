@@ -12,12 +12,12 @@ Store the user info on Neon - postgres, if the account already exists skip to th
 Install Dependencies:
 
 bash
-Copy code
+
 npm install express pg bcryptjs jsonwebtoken dotenv ejs body-parser
 Database Configuration (db.js):
 
 js
-Copy code
+
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -27,7 +27,7 @@ module.exports = pool;
 Server Setup (server.js):
 
 js
-Copy code
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
@@ -48,7 +48,7 @@ app.listen(process.env.PORT, () => {
 Authentication Middleware (auth.js):
 
 js
-Copy code
+
 const jwt = require('jsonwebtoken');
 
 const authenticateToken = (req, res, next) => {
@@ -78,7 +78,7 @@ To build the complete application, I'll provide the code for the main components
 First, initialize the project and install the required dependencies:
 
 bash
-Copy code
+
 mkdir recipe-generator-app
 cd recipe-generator-app
 npm init -y
@@ -87,7 +87,7 @@ npm install express pg bcryptjs jsonwebtoken dotenv ejs body-parser
 Create the directories and files as outlined:
 
 arduino
-Copy code
+
 recipe-generator-app/
 ├── config/
 │   ├── db.js
@@ -116,7 +116,7 @@ recipe-generator-app/
 3. Configuration Files
 3.1. Database Configuration (config/db.js)
 javascript
-Copy code
+
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -127,7 +127,7 @@ const pool = new Pool({
 module.exports = pool;
 3.2. Authentication Configuration (config/auth.js)
 javascript
-Copy code
+
 const jwt = require('jsonwebtoken');
 
 const authenticateToken = (req, res, next) => {
@@ -147,7 +147,7 @@ module.exports = authenticateToken;
 4. Controllers
 4.1. Authentication Controller (controllers/authController.js)
 javascript
-Copy code
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');
@@ -184,7 +184,7 @@ exports.login = async (req, res) => {
 };
 4.2. Profile Controller (controllers/profileController.js)
 javascript
-Copy code
+
 const pool = require('../config/db');
 
 exports.createProfile = async (req, res) => {
@@ -212,7 +212,7 @@ exports.getProfile = async (req, res) => {
 };
 4.3. Recipe Controller (controllers/recipeController.js)
 javascript
-Copy code
+
 const recipes = require('../data/recipes.json');
 
 exports.getRecipes = async (req, res) => {
@@ -230,16 +230,16 @@ exports.getRecipes = async (req, res) => {
 5. Models
 5.1. User Model (models/User.js)
 javascript
-Copy code
+
 // User schema definition (in actual implementation, you might use an ORM like Sequelize)
 5.2. Profile Model (models/Profile.js)
 javascript
-Copy code
+
 // Profile schema definition (in actual implementation, you might use an ORM like Sequelize)
 6. Routes
 6.1. Authentication Routes (routes/authRoutes.js)
 javascript
-Copy code
+
 const express = require('express');
 const authController = require('../controllers/authController');
 const router = express.Router();
@@ -250,7 +250,7 @@ router.post('/login', authController.login);
 module.exports = router;
 6.2. Profile Routes (routes/profileRoutes.js)
 javascript
-Copy code
+
 const express = require('express');
 const profileController = require('../controllers/profileController');
 const authenticateToken = require('../config/auth');
@@ -262,7 +262,7 @@ router.get('/', authenticateToken, profileController.getProfile);
 module.exports = router;
 6.3. Recipe Routes (routes/recipeRoutes.js)
 javascript
-Copy code
+
 const express = require('express');
 const recipeController = require('../controllers/recipeController');
 const authenticateToken = require('../config/auth');
@@ -276,7 +276,7 @@ public/: Add your static assets (CSS, JS, images).
 views/: Add EJS templates (if using server-side rendering). Example:
 7.1. Signup View (views/signup.ejs)
 html
-Copy code
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -295,7 +295,7 @@ Copy code
 </html>
 8. Server Setup (server.js)
 javascript
-Copy code
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
@@ -323,20 +323,20 @@ app.listen(PORT, () => {
 });
 9. Environment Variables (.env)
 plaintext
-Copy code
+
 DATABASE_URL=your_database_url_here
 JWT_SECRET=your_jwt_secret_here
 PORT=3000
 10. Git Ignore (.gitignore)
 plaintext
-Copy code
+
 node_modules
 .env
 11. Database Schema
 Create the tables in the PostgreSQL database:
 
 sql
-Copy code
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100),
@@ -356,7 +356,7 @@ CREATE TABLE profiles (
 Start the server:
 
 bash
-Copy code
+
 node server.js
 Navigate to http://localhost:3000 in your browser to access the application.
 
