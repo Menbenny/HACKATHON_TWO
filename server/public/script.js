@@ -43,7 +43,12 @@ const postUserStats = async(event) => {
     const calculateCalory = (event) => {
         event.preventDefault();
 
-
+        // ! calory properly estimated according to activity
+        // ! ask user activity in forms
+        // ! Create swtich cases for every scenario
+        // Sedentary - light - moderate - active - very active
+        // ? Provide hints for allocation of level of activity 
+        
         const bmr = 10 * weight + 6.25 * height - 5 * age + 5
     }
     
