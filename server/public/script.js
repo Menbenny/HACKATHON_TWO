@@ -33,6 +33,12 @@ const postUserStats = async(event) => {
 
 
     // Daily calory calculator
+    //##################################### 
+    /**
+     * ? Harris-Benedict equation
+     * ! Used to estimate the Basal Metabolic Rate (BMR)
+     * ? Possible to adjust based on user activity level  
+     */
     
 }
 
