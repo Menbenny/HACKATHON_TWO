@@ -18,7 +18,7 @@ router.post("/", (req, res)=>{
     // ! backend data LOGGING
     console.log(`Backend logging user data: ${JSON.stringify(name)}`);
 
-    // ! ADD DATABASE LOGIC - for storing user info
+    // ! ADD DATABASE LOGIC - for storing user sign in info
     // -- Here -- 
 
     //! call models
@@ -33,7 +33,7 @@ router.post("/profile", (req, res)=>{
 
     console.log(`Backend logging user data: ${JSON.stringify(age)}`);
 
-    // ! ADD DATABASE LOGIC - for storing user info
+    // ! ADD DATABASE LOGIC - for storing user profile info
     // -- Here -- 
 
     //! call models
