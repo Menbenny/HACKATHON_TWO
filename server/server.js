@@ -27,4 +27,4 @@ app.listen(serverPort, ()=> {
     console.log(chalk.cyanBright(`Running on ${serverPort}`));
 });
 
-app.use('/', router)
+app.use('/api', router)

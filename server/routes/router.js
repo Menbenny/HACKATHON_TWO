@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-// const {fetchRecipes} = require('../controllers/recipesControllers.js')
+const {fetchRecipes} = require('../controllers/recipesControllers.js')
 
 
-// router.get("/", fetchRecipes)
+router.get("/", fetchRecipes)
 // router.post("/signin", postData)
 // router.post("/", postUserStats)
 
@@ -22,11 +22,11 @@ router.post("/", (req, res)=>{
     // -- Here -- 
 
     //! call models
-    res.json({name, email})
+    res.json({name, email, password})
 })
 
 // posting profile
-router.post("/profile", (req, res)=>{
+router.post("/signin", (req, res)=>{
     const { age, weight, height} = req.body
     
     // ! backend data LOGGING

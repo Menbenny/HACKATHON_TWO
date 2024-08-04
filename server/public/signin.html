@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Create EatSmart Profile</title>
+</head>
+<body>
+    
+    <h1>EatSmart</h1>
+
+    <!-- user credentials -->
+    <form onsubmit="createUser(event)">
+        <input name="text" type="text" placeholder="name">
+        <input name="email" type="email" placeholder="email">
+        <input name="password" type="password" placeholder="password">
+        <button type="submit">sign in </button>
+    </form>
+
+    <!-- user info form -->
+    <form  onsubmit="postUserInfo(event)">
+        <input name="age" type="number" placeholder="age">
+        <input name="weight" type="number" placeholder="weight in kg">
+        <input name="height" type="number" placeholder="height in cm">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Type of diet -->
+    <form onsubmit="postDietType(event)">
+        <label for="diet-type">Choose your diet type:</label>
+        <select name="dietType" id="diet-type">
+            
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            
+
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+  
+    <!-- Meal selection -->
+    <form onsubmit="mealOption(event)">
+        <label for="meal-option">Select your meal(s):</label>
+        <select name="mealOption" id="mealOption">
+            
+            
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="dinner">dinner</option>
+        
+            
+        </select>
+        <button type="submit" id="meal-submit-button">Submit</button>
+    </form> 
+
+      <!-- Activity LEVEL -->
+    <form onsubmit="activityLevel(event)">
+        <label for="activity Level">Choose your activity level:</label>
+        <select name="activityLevel" id="activityLevel">
+            
+            <option value="sedentary">sedentary</option>
+            <option value="light">light</option>
+            <option value="moderate">moderate</option>
+            <option value="active">active</option>
+            <option value="Very active">Very active</option>
+            
+        </select>
+        <button type="submit" id="activity-submit-button">Submit</button>
+    </form>
+
+
+    <!-- Produce results automatically -->
+    <div>
+        <h6>Average daily calory intake calculator</h6>
+        <button id="caloryCalculator" type="submit" onsubmit="calculateCalory(event)">Calculate</button>
+        <p id="calorie-result"></p>
+    </div>
+
+    <script src="signinScript.js"></script>
+    
+</body>
+</html>
