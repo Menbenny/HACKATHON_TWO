@@ -4,7 +4,7 @@ const router = express.Router()
 const {fetchRecipes} = require('../controllers/recipesControllers.js')
 
 
-router.get("/", fetchRecipes)
+router.get("/api", fetchRecipes)
 // router.post("/signin", postData)
 // router.post("/", postUserStats)
 
@@ -12,7 +12,7 @@ router.get("/", fetchRecipes)
 // ? How to identify Controllers function - (req, res)
 
 // posting account 
-router.post("/", (req, res)=>{
+router.post("/signin", (req, res)=>{
     const { name, email, password} = req.body
     
     // ! backend data LOGGING
@@ -39,6 +39,6 @@ router.post("/signin", (req, res)=>{
     //! call models
 
     res.json({age, weight, height})
-})
+});
 
 module.exports = router

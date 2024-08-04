@@ -13,7 +13,7 @@ const createUser = async(event) => {
     const password = event.target.password.value;
 
     // ! Frontend - logging user name
-    console.log(`Frontend logging user name: ${name}`);
+    console.log(`Frontend logging user name: ${name} ${email} ${password}`);
 
     // ! FOR Backend LOGIC - fetch and log the user input -> sent to router
     try {
@@ -24,7 +24,9 @@ const createUser = async(event) => {
             },
             body: JSON.stringify({name, email, password})
         })
-        if(!res.ok) throw new Error(`Error: ${res.statusText}`);
+        if(!res.ok) {
+            throw new Error(`Error: ${res.statusText}`)
+        };
         const data = await res.json()
         console.log(`Response from backend: ${JSON.stringify(data)}`);
         
@@ -52,7 +54,8 @@ const postUserInfo = async(event) => {
         })
         if(!res.ok) throw new Error(`Error: ${res.statusText}`);
         const data = await res.json()
-        console.log(`Response from backend: ${JSON.stringify(data)}`);
+        return data
+        // console.log(`Response from backend: ${JSON.stringify(data)}`);
         
     } catch (error) {
         console.log(error);
@@ -88,11 +91,7 @@ const postUserInfo = async(event) => {
         event.preventDefault()
         
         const bmr = 10 * weight + 6.25 * height - 5 * age + 5
-
-
-
         const BMR_results = `Your average daily calory intake regardless of activity: ${Math.floor(bmr)} cal`
-
         return document.getElementById("calorie-result").innerText = BMR_results;
     })
     // calculateCalory()
@@ -132,7 +131,7 @@ const postDietType = async(event) => {
 //     const activityLevel = form.activityLevel.value ;
 
 //     try {
-//         const res = await fetch("http://localhost:5000/signin",{
+//         const res = await fetch("http://localhost:5000",{
 //             method: "POST",
 //             headers: {
 //                 "content-type": "application/json"

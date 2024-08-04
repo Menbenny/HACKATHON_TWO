@@ -15,7 +15,7 @@ app.use(cors())
 app.use('/', express.static(__dirname + '/public'))
 
 // CREATE PROFILE
-app.use('/profile', express.static(__dirname + '/public/profile.html'))
+// app.use('/signin', express.static(__dirname + '/public/signin.html'))
 
 
 app.use(express.urlencoded({extended:true}))
@@ -27,4 +27,4 @@ app.listen(serverPort, ()=> {
     console.log(chalk.cyanBright(`Running on ${serverPort}`));
 });
 
-app.use('/api', router)
+app.use('/', router)
