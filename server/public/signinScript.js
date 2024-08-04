@@ -54,8 +54,7 @@ const postUserInfo = async(event) => {
         })
         if(!res.ok) throw new Error(`Error: ${res.statusText}`);
         const data = await res.json()
-        return data
-        // console.log(`Response from backend: ${JSON.stringify(data)}`);
+        console.log(`Response from backend: ${JSON.stringify(data)}`);
         
     } catch (error) {
         console.log(error);
@@ -98,6 +97,7 @@ const postUserInfo = async(event) => {
 }
 
 const postDietType = async(event) => {
+
     event.preventDefault();
  
    const form = event.target;
@@ -124,27 +124,58 @@ const postDietType = async(event) => {
   
 }
 
-// const activityLevel = async(event) => {
-//     event.preventDefault()
+const mealSelection = async(event) => {
+    
+    event.preventDefault();
+ 
+   const form = event.target;
+   const mealOption = form.mealOption.value
 
-//     const form = event.target;
-//     const activityLevel = form.activityLevel.value ;
-
-//     try {
-//         const res = await fetch("http://localhost:5000",{
-//             method: "POST",
-//             headers: {
-//                 "content-type": "application/json"
-//             },
-//             body: JSON.stringify({activityLevel})
-//         })
-//         if(!res.ok) throw new Error(`Error: ${res.statusText}`);
-//         const data = await res.json()
-//         console.log(`Response from backend: ${JSON.stringify(data)}`);
-        
-//     } catch (error) {
-//         console.log(error);
-//     }
+   console.log(mealOption);
 
     
-// }
+    try {
+        const res = await fetch("http://localhost:5000/signin",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({mealOption})
+        })
+        if(!res.ok) throw new Error(`Error: ${res.statusText}`);
+        const data = await res.json()
+        console.log(`Response from backend: ${JSON.stringify(data)}`);
+        
+    } catch (error) {
+        console.log(error);
+    }
+  
+}
+
+const activitySelection = async(event) => {
+    event.preventDefault()
+
+    const form = event.target;
+    const activityLevel = form.activityLevel.value ;
+
+    console.log(activityLevel);
+    
+
+    try {
+        const res = await fetch("http://localhost:5000/signin",{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({activityLevel})
+        })
+        if(!res.ok) throw new Error(`Error: ${res.statusText}`);
+        const data = await res.json()
+        console.log(`Response from backend: ${JSON.stringify(data)}`);
+        
+    } catch (error) {
+        console.log(error);
+    }
+
+    
+}

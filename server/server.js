@@ -23,7 +23,7 @@ app.use(express.json())
 
 // ! port
 const serverPort = process.env.PORT || 5000
-app.listen(serverPort, ()=> {
+app.listen(serverPort, () => {
     console.log(chalk.cyanBright(`Running on ${serverPort}`));
 });
 

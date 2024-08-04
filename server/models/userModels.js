@@ -32,3 +32,10 @@ const createDietType = () => {
 const createMeals = () => {
     return db('meals').insert({breakfast, lunch, dinner}, ["breakfast", "lunch", "dinner"])
 }
+
+module.exports = {
+    createAccount,
+    createProfile,
+    createDietType,
+    createMeals
+}
