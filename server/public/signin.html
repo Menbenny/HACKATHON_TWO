@@ -39,19 +39,26 @@
         <button>Submit</button>
     </form>
 
+    <!-- <form action="">
+        <input type="radio">Test option
+        <input type="radio">Test option
+        <input type="radio">Test option
+
+    </form> -->
+
   
     <!-- Meal selection -->
     <form onsubmit="mealSelection(event)">
-        <label for="meal-option">Select your meal(s):</label>
-        <select name="mealOption" id="mealOption">
+        <label for="mealOption">Select your meal(s):</label>
+        <!-- <select name="mealOption" id="mealOption"> -->
             
             
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="dinner">dinner</option>
+            <input type="radio" name="breakfast">breakfast
+            <input type="radio" name="lunch">lunch
+            <input type="radio" name="dinner">dinner
         
             
-        </select>
+        <!-- </select> -->
         <button id="meal-submit-button">Submit</button>
     </form> 
 

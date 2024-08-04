@@ -15,6 +15,7 @@ app.use(cors())
 app.use('/', express.static(__dirname + '/public'))
 
 // CREATE PROFILE
+// ? Use case - ?
 // app.use('/signin', express.static(__dirname + '/public/signin.html'))
 
 

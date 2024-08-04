@@ -9,7 +9,7 @@ const createAccount = (name, email, password) => {
  * weight
  * height
  */
-const createProfile = () => {
+const createProfile = (age, weight, height) => {
     return db('profile').insert({age, weight, height}, ["age", "weight", ])
 }
 
@@ -19,7 +19,7 @@ const createProfile = () => {
  * vegetarian
  * vegan
  */
-const createDietType = () => {
+const createDietType = (vegetarian, vegan) => {
     return db('diet').insert({vegetarian, vegan}, ["vegetarian", "vegan"])
 }
 
@@ -29,7 +29,7 @@ const createDietType = () => {
  * lunch
  * dinner
  */
-const createMeals = () => {
+const createMeals = (breakfast, lunch, dinner) => {
     return db('meals').insert({breakfast, lunch, dinner}, ["breakfast", "lunch", "dinner"])
 }
 
