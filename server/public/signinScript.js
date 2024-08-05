@@ -1,9 +1,3 @@
-// postUserStats
-// age
-// weight
-// height
-// req, res - only in controllers
-
 const createUser = async(event) => {
     
     event.preventDefault();
@@ -124,33 +118,46 @@ const postDietType = async(event) => {
   
 }
 
-const mealSelection = async(event) => {
-    
-    event.preventDefault();
- 
-   const form = event.target;
-   const mealOption = form.mealOption.value
 
-   console.log(mealOption);
+const mealSelection = async (event) => {
+    event.preventDefault(); 
+    
+    
+    const mealOptions = document.getElementsByName('mealOption');
+    let selectedMeals = [];
 
     
+    for (let i = 0; i < mealOptions.length; i++) {
+        if (mealOptions[i].checked) {
+            selectedMeals.push(mealOptions[i].value);
+        }
+    }
+
+    
+    console.log(`Selected meals: ${selectedMeals.join(', ')}`);
+
     try {
-        const res = await fetch("http://localhost:5000/signin",{
+        
+        const res = await fetch("http://localhost:5000/signin", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({mealOption})
-        })
-        if(!res.ok) throw new Error(`Error: ${res.statusText}`);
-        const data = await res.json()
-        console.log(`Response from backend: ${JSON.stringify(data)}`);
+            body: JSON.stringify({ meals: selectedMeals }) 
+        });
         
+        
+        if (!res.ok) throw new Error(`Error: ${res.statusText}`);
+
+        
+        const data = await res.json();
+        console.log(`Response from backend: ${JSON.stringify(data)}`);
     } catch (error) {
-        console.log(error);
+        
+        console.error(error);
     }
-  
-}
+};
+
 
 const activitySelection = async(event) => {
     event.preventDefault()
