@@ -1,3 +1,18 @@
+const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Extract data from the form
+    const form = event.target;
+
+    // Call individual functions with the relevant data
+    await createUser(event);
+    await postUserInfo(event);
+    await postDietType(event);
+    await mealSelection(event);
+    await activitySelection(event);
+    
+};
+
 const createUser = async(event) => {
     
     event.preventDefault();
@@ -37,6 +52,9 @@ const postUserInfo = async(event) => {
     const age = event.target.age.value;
     const weight = event.target.weight.value;
     const height = event.target.height.value;
+
+    console.log(`${age}, ${weight}, ${height}`);
+    
     
     try {
         const res = await fetch("http://localhost:5000/signin",{
@@ -78,16 +96,18 @@ const postUserInfo = async(event) => {
     //     return console.log(`Average Daily Calory intake: ${Math.floor(bmr)} cal`);
     // }
 
-    const caloryCalculatorButton = document.getElementById('caloryCalculator')
+    // const caloryCalculatorButton = document.getElementById('caloryCalculator')
 
-    caloryCalculatorButton.addEventListener("click", (event) => {
-        event.preventDefault()
-        
-        const bmr = 10 * weight + 6.25 * height - 5 * age + 5
-        const BMR_results = `Your average daily calory intake regardless of activity: ${Math.floor(bmr)} cal`
-        return document.getElementById("calorie-result").innerText = BMR_results;
-    })
-    // calculateCalory()
+    // caloryCalculatorButton.addEventListener("click", (event) => {
+    //     event.preventDefault()
+        const calculateCalory = () => {
+            const bmr = 10 * weight + 6.25 * height - 5 * age + 5
+            const BMR_results = `Your average daily calory intake regardless of activity: ${Math.floor(bmr)} cal`
+            return document.getElementById("calorie-result").innerText = BMR_results;
+        }
+       
+    // })
+    calculateCalory()
 }
 
 const postDietType = async(event) => {
