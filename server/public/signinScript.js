@@ -1,15 +1,15 @@
 const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // Extract data from the form
+    
     const form = event.target;
 
-    // Call individual functions with the relevant data
     await createUser(event);
     await postUserInfo(event);
     await postDietType(event);
     await mealSelection(event);
     await activitySelection(event);
+    // local storage functions
+    
     
 };
 
@@ -28,10 +28,14 @@ const createUser = async(event) => {
     //     localStorage.setItem('username', name);
     //     window.location.href = '/server/public/mealOptions.html';
     // }
-
     
-    
-    
+    const userInfoLocalStorage = () => {
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        window.location.href = '/mealOptions.html';
+    }
+    userInfoLocalStorage();
     
 
     //################
@@ -69,6 +73,14 @@ const postUserInfo = async(event) => {
     const height = event.target.height.value;
 
     console.log(`${age}, ${weight}, ${height}`);
+
+    const userInfoLocalStorage = () => {
+        localStorage.setItem('age', age);
+        localStorage.setItem('weight', weight);
+        localStorage.setItem('height', height);
+        window.location.href = '/mealOptions.html';
+    }
+    userInfoLocalStorage();
     
     
     try {
@@ -133,6 +145,13 @@ const postDietType = async(event) => {
    const dietType = form.dietType.value
 
    console.log(dietType);
+
+   const userInfoLocalStorage = () => {
+    localStorage.setItem('dietType', dietType);
+ 
+    window.location.href = '/mealOptions.html';
+}
+userInfoLocalStorage();
 
     
     try {

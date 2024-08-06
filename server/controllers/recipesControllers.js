@@ -4,6 +4,7 @@ const fs = require('fs')
 const fetchRecipes = async(req, res) => {
 
     // ! Possibly vegan & vegetarian recipes
+    // ! Retrieve the locally stored variable 
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=vegetarian&number=1';
     const options = {
         method: 'GET',
