@@ -21,6 +21,21 @@ const createUser = async(event) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
+    //################
+    // LOCAL STORAGE
+
+    // if (name) {
+    //     localStorage.setItem('username', name);
+    //     window.location.href = '/server/public/mealOptions.html';
+    // }
+
+    
+    
+    
+    
+
+    //################
+
     // ! Frontend - logging user name
     console.log(`Frontend logging user name: ${name} ${email} ${password}`);
 
