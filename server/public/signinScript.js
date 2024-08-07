@@ -29,13 +29,13 @@ const createUser = async(event) => {
     //     window.location.href = '/server/public/mealOptions.html';
     // }
     
-    const userInfoLocalStorage = () => {
-        localStorage.setItem('name', name);
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-        window.location.href = '/server/public/mealOptions.html';
-    }
-    userInfoLocalStorage();
+    // const userInfoLocalStorage = () => {
+    //     localStorage.setItem('name', name);
+    //     localStorage.setItem('email', email);
+    //     localStorage.setItem('password', password);
+    //     window.location.href = '/mealOptions.html';
+    // }
+    // userInfoLocalStorage();
     
 
     //################
@@ -74,13 +74,13 @@ const postUserInfo = async(event) => {
 
     console.log(`${age}, ${weight}, ${height}`);
 
-    const userInfoLocalStorage = () => {
-        localStorage.setItem('age', age);
-        localStorage.setItem('weight', weight);
-        localStorage.setItem('height', height);
-        window.location.href = '/server/public/mealOptions.html';
-    }
-    userInfoLocalStorage();
+    // const userInfoLocalStorage = () => {
+    //     localStorage.setItem('age', age);
+    //     localStorage.setItem('weight', weight);
+    //     localStorage.setItem('height', height);
+    //     window.location.href = '/mealOptions.html';
+    // }
+    // userInfoLocalStorage();
     
     
     try {
@@ -146,12 +146,12 @@ const postDietType = async(event) => {
 
    console.log(dietType);
 
-   const userInfoLocalStorage = () => {
-    localStorage.setItem('dietType', dietType);
+//    const userInfoLocalStorage = () => {
+//     localStorage.setItem('dietType', dietType);
  
-    window.location.href = '/server/public/mealOptions.html';
-    }
-    userInfoLocalStorage();
+//     window.location.href = '/mealOptions.html';
+// }
+// userInfoLocalStorage();
 
     
     try {
@@ -220,13 +220,6 @@ const activitySelection = async(event) => {
     const activityLevel = form.activityLevel.value ;
 
     console.log(activityLevel);
-
-    const userInfoLocalStorage = () => {
-        localStorage.setItem('activityLevel', activityLevel);
-     
-        window.location.href = '/server/public/mealOptions.html';
-        }
-        userInfoLocalStorage();
     
 
     try {

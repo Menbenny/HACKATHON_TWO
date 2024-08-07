@@ -11,7 +11,7 @@ function fetchAndDisplayRecipes() {
   // Get user data from local storage or server
   const userData = JSON.parse(localStorage.getItem('userData')); // Replace with your user data retrieval method
 
-  
+  // fetch user by id - // ! 
   fetch(`/api/recipes?dietType=${encodeURIComponent(userData.dietType)}&activityLevel=${encodeURIComponent(userData.activityLevel)}`)
 
     .then(response => response.json())

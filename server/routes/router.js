@@ -1,8 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const {_createAccount} = require('../controllers/userController.js')
 
 const {fetchRecipes} = require('../controllers/recipesControllers.js')
 
+
+
+/// CRUD functionality 
 
 router.get("/api", fetchRecipes)
 // router.post("/signin", postData)
@@ -12,19 +16,7 @@ router.get("/api", fetchRecipes)
 // ? How to identify Controllers function - (req, res)
 
 // posting account 
-router.post("/signin", (req, res)=>{
-    const { name, email, password} = req.body
-    
-    // ! backend data LOGGING
-    console.log(`Backend logging user data: ${JSON.stringify(name)}`);
-
-    // ! ADD DATABASE LOGIC - for storing user sign in info
-    // -- Here -- 
-    
-
-    //! call models
-    res.json({name, email, password})
-})
+router.post("/signin", _createAccount)
 
 // posting profile
 router.post("/signin", (req, res)=>{
@@ -42,4 +34,10 @@ router.post("/signin", (req, res)=>{
     res.json({age, weight, height})
 });
 
+router.put("/signin/:id", (req, res)=>{
+    const { id } = req.params
+    const index = users.findIndex((user) => user.id == id)
+
+
+})
 module.exports = router

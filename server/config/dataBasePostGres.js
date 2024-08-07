@@ -1,17 +1,19 @@
+const postgres = require('postgres')
 const knex = require('knex')
-const PGHOST='ep-round-tree-a2nv3plk.eu-central-1.aws.neon.tech'
-const PGDATABASE='postgres'
-const PGUSER='neondb_owner'
-const PGPASSWORD='di_bootcamp'
-const PGPORT = 5432
+require('dotenv').config()
+
+// let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env
+// ! replacement of PG definitions
+
 const db = knex({
-    client: 'pg',
-    connection: {
-        host: PGHOST,
-        port: PGPORT,
-        user: PGUSER,
-        database: PGDATABASE,
-        password: PGPASSWORD,
-        ssl: {rejectUnauthorized: false}
-    }
+  client: 'pg', // Specifies that you're using PostgreSQL
+  connection: {
+    connectionString: process.env.POSTGRES_URL,
+    ssl: { rejectUnauthorized: false },
+  },
 })
+console.log(process.env.POSTGRES_URL);
+
+module.exports = {
+    db
+};

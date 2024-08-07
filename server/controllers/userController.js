@@ -1,75 +1,77 @@
-const express = require('express')
-// create file
-const {readFileFunc, writeFileFunc} = require('../models/usersModel.js')
-// create file
-const  users = require('../users.json')
+const db = require('../config/dataBasePostGres.js');
+const {
+    createAccount,
+    createProfile,
+    createDietType,
+    createMeals
+} = require('../models/userModels.js')
 
-const getAllUsers = (req, res) => {
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await db('users').select('*');
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ msg: 'Error fetching users', error });
+    }
+};
 
-    res.json(users)
-}
+const getUser = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await db('users').where('id', id).first();
+        if (!user) return res.status(404).json({ msg: 'User not found' });
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ msg: 'Error fetching user', error });
+    }
+};
 
-const getUser = (req, res) => {
-    const { id } = req.params
-    const User = users.find((item)=> item.id == id)
-
-    if(!User) return res.status(404).json({msg: 'User not found'})
-        res.json(User)
-}
-
-// const createUser = (req, res) => {
-
-//     const myUser = {
-//         ...req.body,
-//         id: users.length + 1,
-//         name: req.body.name,
-//         age: req.body.age,
-//         weight: req.body.weight,
-//         height: req.body.height
+// const createUser = async (req, res) => {
+//     const userData = req.body;
+//     try {
+//         const [id] = await db('users').insert(userData).returning('id');
+//         res.status(201).json({ id });
+//     } catch (error) {
+//         res.status(500).json({ msg: 'Error creating user', error });
 //     }
+// };
 
-//     users.push(myUser)
-//     writeFileFunc(users)
-//     res.sendStatus(201)
-// }
-
-const updateUser = (req, res) => {
-    const { id } = req.params
-    const index = users.findIndex((item)=> item.id == id);
-
-    const myUser = {
-        ...req.body,
-        id: users[index],
-        name: req.body.name,
-        age: req.body.age,
-        weight: req.body.weight,
-        height: req.body.height
+const _createAccount = async(req, res) => {
+    try {
+        const userData = req.body
+        const userAccount = await createAccount(userData)
+        res.json(userAccount.user)
+    } catch (error) {
+        console.log(error);
+        
     }
-
-    users.push(myUser)
-    writeFileFunc(users)
-    res.json(users)
 }
 
-const deleteUser = (req, res) => {
-    const { id } = req.params
-    const index = users.findIndex((item)=> item.id == id);
-
-    if(index === -1){
-        res.status(404).send(`User not found`)
+const updateUser = async (req, res) => {
+    const { id } = req.params;
+    const userData = req.body;
+    try {
+        await db('users').where('id', id).update(userData);
+        res.json({ msg: 'User updated' });
+    } catch (error) {
+        res.status(500).json({ msg: 'Error updating user', error });
     }
+};
 
-   users.splice(index, 1)
-    writeFileFunc(users)
-    res.json(users)
-}
-
-
+const deleteUser = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await db('users').where('id', id).del();
+        res.json({ msg: 'User deleted' });
+    } catch (error) {
+        res.status(500).json({ msg: 'Error deleting user', error });
+    }
+};
 
 module.exports = {
     getAllUsers,
     getUser,
-    createUser,
+    _createAccount,
     updateUser,
     deleteUser
-}
+};

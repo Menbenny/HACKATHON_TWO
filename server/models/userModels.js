@@ -1,43 +1,53 @@
-const db = require('../config/dataBasePostGres.js'); // Replace with your database configuration
+const {db} = require('../config/dataBasePostGres.js')
 
-const userModel = {
-  createUser: async (userData) => {
+// Model writes to DataBase
+
+const createAccount = async (userData) => {
+  const {user_id, name, email, password, profiles, user_diets, goals} = userData
+    // return db('account').insert({name, email, password}, ["user_id", "name", "email", "password"])
+
+    let trx
     try {
-      const [id] = await db('users').insert(userData, ['id']); // Assuming an 'id' column
-      return id;
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
-    }
-  },
+      trx = await db.transaction()
 
-  getUserById: async (userId) => {
-    try {
-      const user = await db('users').where('id', userId).first();
-      return user;
+      const [user] = await trx('account').insert({
+        user_id,
+        name, 
+        email,
+        password,
+        profiles,
+        user_diets,
+        goals
+      },
+      ['id']
+    )
     } catch (error) {
-      console.error('Error getting user:', error);
-      throw error;
+      if (trx) {
+        await trx.rollback()
+      }
+      console.error('Error registering user:', error)
+      throw new Error('Internal Server Error')
     }
-  },
+}
 
-  updateUser: async (userId, userData) => {
-    try {
-      await db('users').where('id', userId).update(userData);
-    } catch (error) {
-      console.error('Error updating user:', error);
-      throw error;
-    }
-  },
+const createProfile = (userProfile) => {
+  const {age, weight, height} = userProfile
+    return db('profile').insert({age, weight, height}, ["age", "weight", ])
+}
 
-  deleteUser: async (userId) => {
-    try {
-      await db('users').where('id', userId).del();
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      throw error;
-    }
-  }
-};
+const createDietType = (dietType) => {
+  const {vegetarian, vegan} = dietType
+    return db('diet').insert({vegetarian, vegan}, ["vegetarian", "vegan"])
+}
 
-module.exports = userModel;
+const createMeals = (meals) => {
+  const {breakfast, lunch, dinner} = meals
+    return db('meals').insert({breakfast, lunch, dinner}, ["breakfast", "lunch", "dinner"])
+}
+
+module.exports = {
+    createAccount,
+    createProfile,
+    createDietType,
+    createMeals
+}
