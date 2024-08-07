@@ -1,10 +1,12 @@
 const express = require('express')
-const fs = require('fs')
+// const fetch = require('node-fetch')
 
 const fetchRecipes = async(req, res) => {
+    //#
+    const { dietType, mealOptions } = req.body; 
+    const randomNumber = Math.floor(Math.random() * 100) + 1; 
 
-    // ! Possibly vegan & vegetarian recipes
-    // ! Retrieve the locally stored variable 
+
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=vegetarian&number=1';
     const options = {
         method: 'GET',
@@ -29,31 +31,15 @@ const fetchRecipes = async(req, res) => {
         // console.log(result);
     } catch (error) {
         console.error(error);
-        res.status(500)
+        res.status(500).json({ message: 'Failed to fetch recipes. Please try again later.' });
     }
 
 
-    // ! second testing API
-    // const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
-    // const options = {
-    //     method: 'GET',
-    //     headers: {
-    //         'x-rapidapi-key': 'a3582a4bc7mshe80b474803c925dp1958a8jsn1d558d3ae1f8',
-    //         'x-rapidapi-host': 'tasty.p.rapidapi.com'
-    //     }
-    // };
-
-    // try {
-    //     const response = await fetch(url, options);
-    //     const result = await response.text();
-    //     res.json(result)
-    //     // console.log(result);
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(500).json({msg: `Data not found`})
-    // }
+   
 }
 
 module.exports = {
     fetchRecipes
 }
+
+

@@ -33,7 +33,7 @@ const createUser = async(event) => {
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
-        window.location.href = '/mealOptions.html';
+        window.location.href = '/server/public/mealOptions.html';
     }
     userInfoLocalStorage();
     
@@ -78,7 +78,7 @@ const postUserInfo = async(event) => {
         localStorage.setItem('age', age);
         localStorage.setItem('weight', weight);
         localStorage.setItem('height', height);
-        window.location.href = '/mealOptions.html';
+        window.location.href = '/server/public/mealOptions.html';
     }
     userInfoLocalStorage();
     
@@ -149,9 +149,9 @@ const postDietType = async(event) => {
    const userInfoLocalStorage = () => {
     localStorage.setItem('dietType', dietType);
  
-    window.location.href = '/mealOptions.html';
-}
-userInfoLocalStorage();
+    window.location.href = '/server/public/mealOptions.html';
+    }
+    userInfoLocalStorage();
 
     
     try {
@@ -220,6 +220,13 @@ const activitySelection = async(event) => {
     const activityLevel = form.activityLevel.value ;
 
     console.log(activityLevel);
+
+    const userInfoLocalStorage = () => {
+        localStorage.setItem('activityLevel', activityLevel);
+     
+        window.location.href = '/server/public/mealOptions.html';
+        }
+        userInfoLocalStorage();
     
 
     try {

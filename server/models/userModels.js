@@ -1,41 +1,43 @@
-const {db} = require('../config/dataBasePostGres.js')
+const db = require('../config/dataBasePostGres.js'); // Replace with your database configuration
 
-const createAccount = (name, email, password) => {
-    return db('account').insert({name, email, password}, ["user_id", "name", "email", "password"])
-}
+const userModel = {
+  createUser: async (userData) => {
+    try {
+      const [id] = await db('users').insert(userData, ['id']); // Assuming an 'id' column
+      return id;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  },
 
-/**
- * age
- * weight
- * height
- */
-const createProfile = (age, weight, height) => {
-    return db('profile').insert({age, weight, height}, ["age", "weight", ])
-}
+  getUserById: async (userId) => {
+    try {
+      const user = await db('users').where('id', userId).first();
+      return user;
+    } catch (error) {
+      console.error('Error getting user:', error);
+      throw error;
+    }
+  },
 
+  updateUser: async (userId, userData) => {
+    try {
+      await db('users').where('id', userId).update(userData);
+    } catch (error) {
+      console.error('Error updating user:', error);
+      throw error;
+    }
+  },
 
+  deleteUser: async (userId) => {
+    try {
+      await db('users').where('id', userId).del();
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      throw error;
+    }
+  }
+};
 
-/**
- * vegetarian
- * vegan
- */
-const createDietType = (vegetarian, vegan) => {
-    return db('diet').insert({vegetarian, vegan}, ["vegetarian", "vegan"])
-}
-
-
-/**
- * breakfast
- * lunch
- * dinner
- */
-const createMeals = (breakfast, lunch, dinner) => {
-    return db('meals').insert({breakfast, lunch, dinner}, ["breakfast", "lunch", "dinner"])
-}
-
-module.exports = {
-    createAccount,
-    createProfile,
-    createDietType,
-    createMeals
-}
+module.exports = userModel;

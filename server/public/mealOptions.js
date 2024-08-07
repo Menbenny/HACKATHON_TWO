@@ -1,18 +1,40 @@
-// const userName = localStorage.getItem('userName');
+// Retrieve user data from local storage
+const dietType = localStorage.getItem('dietType');
+const activityLevel = localStorage.getItem('activityLevel');
+console.log(activityLevel);
 
-// document.getElementsByClassName('userName').innerHTML = userName
+console.log(dietType);
 
-// ! Retrieve the user info from database
-// ! Inject the user diet type into the API URL - tags = ${diet-type}
+const mealOptions = document.querySelector('.mealOption');
 
-const username = localStorage.getItem('name');
-const email = localStorage.getItem('email')
-const password = localStorage.getItem('passwod')
+function fetchAndDisplayRecipes() {
+  // Get user data from local storage or server
+  const userData = JSON.parse(localStorage.getItem('userData')); // Replace with your user data retrieval method
 
-const age = localStorage.getItem('age')
-const weight = localStorage.getItem('weight')
-const height = localStorage.getItem('height')
-// console.log(username, email, password, age, weight, height);
-const dietType = localStorage.getItem('dietType')
-console.log(`Diet type is: ${dietType}`);
+  
+  fetch(`/api/recipes?dietType=${encodeURIComponent(userData.dietType)}&activityLevel=${encodeURIComponent(userData.activityLevel)}`)
 
+    .then(response => response.json())
+    .then(data => {
+      // Clear existing recipes
+      mealOptions.innerHTML = '';
+
+      // Create recipe elements
+      data.forEach(recipe => {
+        const recipeElement = document.createElement('div');
+        recipeElement.classList.add('recipe');
+        recipeElement.innerHTML = `
+          <h3>${recipe.title}</h3>
+          <p>Calories: ${recipe.calories}</p>
+        `;
+        mealOptions.appendChild(recipeElement);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching recipes:', error);
+      // Handle error, display error message to user
+    });
+}
+
+// Call the function to fetch and display recipes
+fetchAndDisplayRecipes();
